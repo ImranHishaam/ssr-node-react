@@ -21,21 +21,27 @@ export const searchMovieApi = async (req: any, res: any, next: any) => {
     try {
         const apiResponse: any[any] = await axios.all(urlPromises);
         const dataSet = [];
-        let isError = false;
-        apiResponse.some((response: any) => {
+        const isError = apiResponse.some((response: any) => {
             if (response.data.Error !== undefined) {
-                isError = true;
                 return true;
             } else {
                 dataSet.push(...response.data.Search);
+                return false;
             }
         });
 
         if (isError) {
-            res.status(400).send({ success: !isError, error: {message: "Movie not found"} });
+            appCache.get(`${queryString}${pageNumber-1}`, (err: any, value: any) => {
+                if (!err) {
+                  if (value == undefined) {
+                    res.status(400).send({ success: !isError, error: {message: "Movie not found"} });
+                  } else {
+                    res.status(200).send({ success: true, end: true });
+                  }
+                }
+              });
         } else {
             appCache.set(`${queryString}${pageNumber}`, dataSet);
-            res.set('Cache-Control', 'public, max-age=30');
             res.status(200).send({ success: !isError, data: dataSet });
         }
     } catch (error) {

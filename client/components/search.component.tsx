@@ -2,8 +2,8 @@ import React, { useEffect, Fragment } from "react";
 import { connect } from "react-redux";
 import { debounce } from "lodash";
 
-import { fetchSearchApi } from "../apis/movieSearch.api";
-import { ClearSearchAction } from '../actions/search.action';
+import { fetchSearchApi } from "../services/movieSearch.service";
+import { clearSearchAction } from '../actions/search.action';
 
 import { MovieCell } from './movieCell.component';
 import { LoadingComponent } from './loading.component';
@@ -25,11 +25,13 @@ type Props = {
   pageNumber: number;
   result: Array<Object>;
   searchText: string;
-  ClearSearchAction: ({});
+  clearSearchAction: ({});
+  hasMore: boolean;
 };
 
 const SearchComponent = (props: Props) => {
 
+  console.log("aksjfdklafd", props)
   const debounceEvent = (...args: any) => {
     this.debouncedEvent = debounce(...args);
     return e => {
@@ -41,7 +43,7 @@ const SearchComponent = (props: Props) => {
   const handleTextChange = (e: any) => {
     const searchText = e.target.value;
     if (searchText.length >= 3) {
-      props.ClearSearchAction();
+      props.clearSearchAction();
       props.fetchSearchApi({ searchText: e.target.value, pageNumber: 1 });
     }
   };
@@ -70,8 +72,13 @@ const SearchComponent = (props: Props) => {
             <InfiniteScrollContainer
               dataLength={props.result.length}
               next={loadMore}
-              hasMore={true}
+              hasMore={props.hasMore}
               loader={<LoadingComponent />}
+              endMessage={
+                <p style={{textAlign: 'center'}}>
+                  <b>Yay! You have seen it all</b>
+                </p>
+              }
             >
               <ul>
                 <Fragment>
@@ -102,12 +109,13 @@ const mapStateToProps = state => ({
   errorMessage: state.search.errorMessage,
   pageNumber: state.search.pageNumber,
   result: state.search.result,
-  searchText: state.search.searchText
+  searchText: state.search.searchText,
+  hasMore: state.search.hasMore
 });
 
 const mapDispatchToProps = (dispatch: any) => ({
   fetchSearchApi: ({ searchText, pageNumber }) => dispatch(fetchSearchApi({ searchText, pageNumber })),
-  ClearSearchAction: () => dispatch(ClearSearchAction())
+  clearSearchAction: () => dispatch(clearSearchAction())
 });
 
 export default connect(

@@ -18,7 +18,11 @@ export type CLEAR_SEARCH = {
   type: "CLEAR_SEARCH"
 }
 
-export const FetchSearchAction = (searchText: string, pageNumber: number): FETCH_SEARCH => {
+export type SEARCH_END = {
+  type: "SEARCH_END"
+}
+
+export const fetchSearchAction = (searchText: string, pageNumber: number): FETCH_SEARCH => {
   return {
     type: "FETCH_SEARCH",
     searchText,
@@ -26,14 +30,14 @@ export const FetchSearchAction = (searchText: string, pageNumber: number): FETCH
   };
 }
 
-export const FetchSearchSuccessAction = (data: any): FETCH_SEARCH_SUCCESS => {
+export const fetchSearchSuccessAction = (data: any): FETCH_SEARCH_SUCCESS => {
   return {
     type: "FETCH_SEARCH_SUCCESS",
     data
   };
 }
 
-export const FetchSearchErrorAction = (error: any): FETCH_SEARCH_ERROR => {
+export const fetchSearchErrorAction = (error: any): FETCH_SEARCH_ERROR => {
   return {
     type: "FETCH_SEARCH_ERROR",
     error
@@ -41,8 +45,14 @@ export const FetchSearchErrorAction = (error: any): FETCH_SEARCH_ERROR => {
 }
 
 
-export const ClearSearchAction = () => {
+export const clearSearchAction = () => {
   return {
     type: "CLEAR_SEARCH"
   };
+}
+
+export const searchEndAction = () => {
+  return {
+    type: "SEARCH_END"
+  }
 }

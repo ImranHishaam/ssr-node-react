@@ -7,6 +7,8 @@ export const searchMovie = (req: any, res: any, next: any) => {
   const pageNumber: number = parseInt(req.query.page);
   const queryString: string = req.query.searchString;
   
+  res.set('Cache-Control', 'public, max-age=30');
+  
   appCache.get(`${queryString}${pageNumber}`, (err: any, value: any) => {
     if (!err) {
       if (value == undefined) {
