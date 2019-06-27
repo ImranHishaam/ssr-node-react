@@ -1,5 +1,6 @@
 import { combineReducers } from "redux";
-import search from "./searchReducer";
+
+import search from "./search.reducer";
 const searchApp = combineReducers({
   search
 });

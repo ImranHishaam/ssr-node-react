@@ -2,7 +2,10 @@
 About 12 hours was spend betwee 2 days 
 
 # What would you change in your submission to make it production ready?
-1) Remove logs 
+1) Remove compiler warnings (at a high warning level) 
+2) Comment on critial logcial sections 
+3) Create a production level secret keys and variables different .env files
+4) 
 
 # What would you do differently if you had more time?
 1) Add authentication for API requests
@@ -11,6 +14,8 @@ About 12 hours was spend betwee 2 days
 4) Add comments on functions and code blocks
 5) Create a proper models structure for the data
 6) Add state immutability accross the entire application
+7) Structure the application in redux duck pattern
+8) Automate deployment for production 
 
 # Run Application
 1) Install node modules

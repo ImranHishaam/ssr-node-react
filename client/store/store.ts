@@ -3,7 +3,7 @@ import thunk from 'redux-thunk';
 // import { composeWithDevTools } from "redux-devtools-extension";
 import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
-import SearchApp from "./reducers";
+import SearchApp from "../reducers";
 
 const persistConfig = {
   key: "root",

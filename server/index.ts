@@ -4,24 +4,21 @@ import { join } from "path";
 import * as next from "next";
 import * as express from 'express';
 
-const serviceLocator = require('./config/di');
+import * as MovieController from './api/controllers/movie.controller';
+import * as CacheController from './api/controllers/cache.controller';
 
 const port = parseInt(process.env.PORT, 10) || 3000;
 const dev = process.env.NODE_ENV !== "production";
-const app = next({ dev });
+const app = next({ dir: './client', dev });
 const handle = app.getRequestHandler();
 
 app.prepare().then(() => {
 
-  const server = express()
+  const server = express();
 
-  server.get('/api/search', (req: Object, res: Object, next: Object) => {
-    serviceLocator.get("movieController").SearchMovieService(req, res, next);
-  });
+  server.get('/api/search', MovieController.searchMovie);
   
-  server.get('/api/clear', (req: Object, res: Object, next: Object) => {
-    serviceLocator.get("cacheController").ClearCache(req, res, next);
-  });
+  server.get('/api/clear', CacheController.clearCache);
   
   server.get('*', (req: any, res: any) => {
 
@@ -40,4 +37,3 @@ app.prepare().then(() => {
     console.log(`> Ready on http://localhost:${port}`);
   })
 });
-

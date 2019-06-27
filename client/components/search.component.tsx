@@ -1,16 +1,20 @@
 import React, { useEffect, Fragment } from "react";
 import { connect } from "react-redux";
 import { debounce } from "lodash";
-import InfiniteScroll from 'react-infinite-scroll-component';
 
-import { fetchSearchApi } from "../apis/movieSearchApi";
-import { ClearSearchAction } from '../actions/searchAction';
+import { fetchSearchApi } from "../apis/movieSearch.api";
+import { ClearSearchAction } from '../actions/search.action';
 
-import { MovieCell } from './movieCellComponent';
-import { LoadingComponent } from './loadingComponent';
+import { MovieCell } from './movieCell.component';
+import { LoadingComponent } from './loading.component';
 import { LazyLoadComponent } from 'react-lazy-load-image-component';
 
-import { Offline } from "react-detect-offline";
+import {
+  SearchContainer,
+  SearchInputField,
+  SearchResultContainer,
+  InfiniteScrollContainer
+} from '../styles/search.styles';
 
 type Props = {
   fetchSearchApi: ({ searchText: string, pageNumber: number });
@@ -55,15 +59,15 @@ const SearchComponent = (props: Props) => {
   return (
     <div>
       <div>
-        <main className="wrapper">
-          <input
+        <SearchContainer>
+          <SearchInputField
               placeholder="Search Movies"
               onChange={debounceEvent(handleTextChange, 500)} />
 
-          <section className="breweries" id="breweries">
-          <Offline>You're offline right now. Check your connection.</Offline>
+          <SearchResultContainer id="breweries">
+            
             {props.error ? props.errorMessage : null}
-            <InfiniteScroll
+            <InfiniteScrollContainer
               dataLength={props.result.length}
               next={loadMore}
               hasMore={true}
@@ -83,9 +87,9 @@ const SearchComponent = (props: Props) => {
                   ) : null}
                 </Fragment>
               </ul>
-            </InfiniteScroll>
-          </section>
-        </main>
+            </InfiniteScrollContainer>
+          </SearchResultContainer>
+        </SearchContainer>
 
       </div>
     </div>

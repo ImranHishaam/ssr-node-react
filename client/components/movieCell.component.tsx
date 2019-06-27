@@ -1,5 +1,10 @@
 import React, { FunctionComponent } from 'react';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
+
+import {
+  CellFigure,
+  MovieTitle,
+  LazyLoadImageContainer
+} from '../styles/movieCell.styles';
 
 export interface MovieCellProps {
   Title: string
@@ -12,15 +17,15 @@ export interface MovieCellProps {
 export const MovieCell: FunctionComponent<MovieCellProps> = ({ Poster, Title }) => {
   return (
     <li>
-      <figure>
-        <LazyLoadImage
+      <CellFigure>
+        <LazyLoadImageContainer
           alt={Title}
           src={Poster}
           effect="blur"
           visibleByDefault={true}
           />
-      </figure>
-      <p>{Title}</p>
+      </CellFigure>
+      <MovieTitle>{Title}</MovieTitle>
     </li>
   );
 }

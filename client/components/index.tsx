@@ -1,4 +1,3 @@
-import Todos from "./movieCellComponent";
-import SearchComponent from "./searchComponent";
+import SearchComponent from "./search.component";
 
-export { Todos, SearchComponent };
+export { SearchComponent };

@@ -4,8 +4,8 @@ import Head from "next/head";
 import { PersistGate } from "redux-persist/integration/react";
 import { Provider } from "react-redux";
 import * as ReactGA from "react-ga";
-import withReduxStore from "../client/lib/with-redux-store";
-import GlobalStyles from '../client/styles/global-styles';
+import withReduxStore from "../store/with-redux-store";
+import GlobalStyles from '../styles/global.styles';
 
 type Props = {
   reduxStore: any;

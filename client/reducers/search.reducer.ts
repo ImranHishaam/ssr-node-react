@@ -1,4 +1,10 @@
-import { FETCH_SEARCH, FETCH_SEARCH_SUCCESS, FETCH_SEARCH_ERROR, CLEAR_SEARCH } from "../actions/searchAction";
+import { fromJS } from 'immutable';
+import { 
+  FETCH_SEARCH, 
+  FETCH_SEARCH_SUCCESS, 
+  FETCH_SEARCH_ERROR, 
+  CLEAR_SEARCH 
+} from "../actions/search.action";
 
 type SearchState = {
   isLoading: boolean;
@@ -33,6 +39,7 @@ export default (state = INITIAL_STATE, action: FETCH_SEARCH | FETCH_SEARCH_SUCCE
       return {
         ...state,
         isLoading: false,
+        error: false,
         result: result,
         pageNumber: pageNumber + 1
       };
@@ -41,7 +48,7 @@ export default (state = INITIAL_STATE, action: FETCH_SEARCH | FETCH_SEARCH_SUCCE
           ...state,
           isLoading: false,
           error: true,
-          errorMessage: action.error.message
+          errorMessage: action.error.error.message
         };
       case "CLEAR_SEARCH":
           return {
