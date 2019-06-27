@@ -1,3 +1,3 @@
-import SearchComponent from "./search.component";
+import SearchComponent from "./search/search.component";
 
 export { SearchComponent };

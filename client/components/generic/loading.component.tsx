@@ -2,8 +2,8 @@ import React, { FunctionComponent } from 'react';
 import { Facebook } from 'react-content-loader';
 
 export const LoadingComponent: FunctionComponent = () => {
-    return(
-      <ul>
+  return (
+    <ul>
       <li>
         <Facebook />
       </li>
@@ -13,7 +13,6 @@ export const LoadingComponent: FunctionComponent = () => {
       <li>
         <Facebook />
       </li>
-      </ul>
-    );
-  }
-  
+    </ul>
+  );
+}

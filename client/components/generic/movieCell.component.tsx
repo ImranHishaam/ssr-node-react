@@ -4,7 +4,7 @@ import {
   CellFigure,
   MovieTitle,
   LazyLoadImageContainer
-} from '../styles/movieCell.styles';
+} from '../../styles/movieCell.style';
 
 export interface MovieCellProps {
   Title: string

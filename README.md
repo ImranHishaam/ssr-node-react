@@ -1,11 +1,13 @@
 # The time you spent on the case study
-About 12 hours was spend betwee 2 days 
+About 12 hours was spend between 2 days 
+5 hours was spent on 27/06/2019 for the feedback changes
 
 # What would you change in your submission to make it production ready?
 1) Remove compiler warnings (at a high warning level) 
 2) Comment on critial logcial sections 
 3) Create a production level secret keys and variables different .env files
-4) 
+4) Remove logs
+5) 
 
 # What would you do differently if you had more time?
 1) Add authentication for API requests

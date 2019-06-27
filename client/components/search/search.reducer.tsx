@@ -4,7 +4,7 @@ import {
   FETCH_SEARCH_ERROR,
   CLEAR_SEARCH,
   SEARCH_END
-} from "../actions/search.action";
+} from "./search.action";
 
 type SearchState = {
   isLoading: boolean,

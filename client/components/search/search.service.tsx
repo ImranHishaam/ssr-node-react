@@ -4,8 +4,8 @@ import {
     fetchSearchSuccessAction, 
     fetchSearchErrorAction,
     searchEndAction
- } from "../actions/search.action";
-import { SEARCH } from '../constants/API.constants';
+ } from "./search.action";
+import { SEARCH } from './search.constants';
 
 export const fetchSearchApi = ({ searchText, pageNumber }) => {
     return async (dispatch: any) => {

@@ -2,11 +2,11 @@ import React, { useEffect, Fragment } from "react";
 import { connect } from "react-redux";
 import { debounce } from "lodash";
 
-import { fetchSearchApi } from "../services/movieSearch.service";
-import { clearSearchAction } from '../actions/search.action';
+import { fetchSearchApi } from "./search.service";
+import { clearSearchAction } from './search.action';
 
-import { MovieCell } from './movieCell.component';
-import { LoadingComponent } from './loading.component';
+import { MovieCell } from '../generic/movieCell.component';
+import { LoadingComponent } from '../generic/loading.component';
 import { LazyLoadComponent } from 'react-lazy-load-image-component';
 
 import {
@@ -14,7 +14,7 @@ import {
   SearchInputField,
   SearchResultContainer,
   InfiniteScrollContainer
-} from '../styles/search.styles';
+} from './search.style';
 
 type Props = {
   fetchSearchApi: ({ searchText: string, pageNumber: number });
@@ -31,7 +31,6 @@ type Props = {
 
 const SearchComponent = (props: Props) => {
 
-  console.log("aksjfdklafd", props)
   const debounceEvent = (...args: any) => {
     this.debouncedEvent = debounce(...args);
     return e => {
